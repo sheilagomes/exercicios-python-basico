@@ -1,0 +1,10 @@
+s = 'um tigre, dois tigres, três tigres'
+print(f'Pra encontrar 1a. posição\ns.find("tigre") {s.find("tigre")}')
+print(f'Pra encontrar 1a. posição depois da posição tal\ns.find("tigre", 4) {s.find("tigre", 4)}')
+print('Pra substituir temporariamente s.replace("tigre", "gato")')
+print(s.replace('tigre', 'gato'))
+print(s)
+print('Pra substituir definitivamente s = s.replace("tigre", "gato")')
+print(s)
+s = s.replace('tigre', 'gato')
+print(s)
