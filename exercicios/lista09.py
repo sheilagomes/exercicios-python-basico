@@ -6,8 +6,9 @@
 # first_last6([1, 2, 6]) -> True
 # first_last6([6, 1, 2, 3]) -> True
 # first_last6([3, 2, 1]) -> False
-def first_last6(nums): #
-  return len([ a for a in nums if a == 6 and (nums.index(a) == 0 or nums.index(a) == (len(nums) - 1)) ]) > 0
+def first_last6(nums): 
+   return nums[0] == 6 or nums[-1] == 6
+#  return len([ a for a in nums if a == 6 and (nums.index(a) == 0 or nums.index(a) == (len(nums) - 1)) ]) > 0
 
 # B. same_first_last #
 # retorna True se a lista nums possui pelo menos um elemento
@@ -16,7 +17,8 @@ def first_last6(nums): #
 # same_first_last([1, 2, 3, 1]) -> True
 # same_first_last([1, 2, 1]) -> True
 def same_first_last(nums):
-  return len([ a for a in nums if nums[0] == nums[-1] and len(nums) > 0]) > 0
+  return len(nums) > 0 and nums[0] == nums[-1]
+#  return len([ a for a in nums if nums[0] == nums[-1] and len(nums) > 0]) > 0
 
 # C. common_end #
 # Dada duas listas a e b verifica se os dois primeiros são
@@ -35,24 +37,28 @@ def common_end(a, b):
 # maior_ponta([1, 2, 3]) -> [3, 3, 3]
 # maior_ponta([1, 3, 2]) -> [2, 2, 2]
 def maior_ponta(nums):
-    for x in range(len(nums)):
-        if nums[0] > nums[-1]:
-            nums[x] = nums[0]
-        else:
-            nums[x] = nums[-1]
-    return nums
+   return [max(nums[0], nums[-1])] * len(nums)
+#    for x in range(len(nums)):
+#        if nums[0] > nums[-1]:
+#            nums[x] = nums[0]
+#        else:
+#            nums[x] = nums[-1]
+#    return nums
+
+#    return [ nums[x] = nums[0] for x in range(len(nums)) if nums[0] > nums[-1] else nums[x] = nums[-1] for z in nums ]
 
 # E. sum2 #
 # Dada uma lista de inteiros de qualquer tamanho
 # retorna a soma dos dois primeiros elementos
 # se a lista tiver menos de dois elementos, soma o que for possível
 def sum2(nums):
-  if len(nums) == 0:
-      return 0
-  elif len(nums) > 1:
-      return nums[0] + nums[1]
-  else: 
-      return nums[0]
+  return sum(nums[:2])
+#  if len(nums) == 0:
+#      return 0
+#  elif len(nums) > 1:
+#      return nums[0] + nums[1]
+#  else: 
+#      return nums[0]
 
 # F. middle_way #
 # sejam duas listas de inteiros a e b
@@ -62,7 +68,8 @@ def sum2(nums):
 # middle_way([7, 7, 7], [3, 8, 0]) -> [7, 8]
 # middle_way([5, 2, 9], [1, 4, 5]) -> [2, 4]
 def middle_way(a, b):
-  return [a[int(len(a)/2)], b[int(len(b)/2)]]
+  return [a[len(a)//2], b[len(b)//2]]
+#  return [a[int(len(a)/2)], b[int(len(b)/2)]]
 
 # G. date_fashion
 # você e sua namorada(o) vão a um restaurante
@@ -95,7 +102,9 @@ def date_fashion(eu, par):
 # squirrel_play(95, False) -> False
 # squirrel_play(95, True) -> True
 def squirrel_play(temp, is_summer):
-  return (temp >= 60 and temp <= 90) or ((temp >= 60 and temp <= 100) and is_summer)
+  return 60 <= temp <= 100 if is_summer else 60 <= temp <= 90
+  
+#  return (temp >= 60 and temp <= 90) or ((temp >= 60 and temp <= 100) and is_summer)
 
 # I. pego_correndo
 # você foi pego correndo
@@ -129,7 +138,21 @@ def pego_correndo(speed, is_birthday):
 # alarm_clock(5, False) -> '7:00'
 # alarm_clock(0, False) -> '10:00'
 def alarm_clock(day, vacation):
-  return
+    if not vacation:
+        if day != 0 and day != 6:
+            return '7:00'
+        else:
+            return '10:00'
+    else:
+        if day != 0 and day != 6:
+            return '10:00'
+        else:
+            return 'off'
+#  if vacation:
+#    return 'off' if day in (0, 6) else '10:00'
+#  else:
+#    return '10:00' if day in (0, 6) else '7:00'
+
 
 # Provided simple test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
