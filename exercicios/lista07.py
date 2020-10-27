@@ -17,7 +17,6 @@ def string_splosion(s):
     for x in range(len(s)):
         p += s[0:x+1]
     return p
-#    return [ s[0:x+1] for a in s for x in range(len(s)) ]
 
 # C. array_count9
 # conta quantas vezes aparece o 9 numa lista nums
