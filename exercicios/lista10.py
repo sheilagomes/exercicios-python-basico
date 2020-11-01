@@ -8,7 +8,7 @@
 # near_ten(17) -> False
 # near_ten(19) -> True
 def near_ten(n):
-  return
+    return ((10 - (n % 10)) <= 2) or ((10 - (n % 10)) >= 8)
 
 # B. lone_sum
 # Soma maluca: some os números inteiros a, b, e c
@@ -17,7 +17,15 @@ def near_ten(n):
 # lone_sum(3, 2, 3) -> 2
 # lone_sum(3, 3, 3) -> 0
 def lone_sum(a, b, c):
-  return
+    if a == b == c:
+        a, b, c = 0, 0, 0
+    elif a == b:
+        a, b = 0, 0
+    elif b == c:
+        b, c = 0, 0
+    elif a == c:
+        a, c = 0, 0
+    return a + b + c
 
 # C. luck_sum #
 # Soma três inteiros a, b, c
@@ -26,7 +34,13 @@ def lone_sum(a, b, c):
 # lucky_sum(1, 2, 13) -> 3
 # lucky_sum(1, 13, 3) -> 1
 def lucky_sum(a, b, c):
-  return
+    if a == 13:
+        a, b, c = 0, 0, 0
+    elif b == 13:
+        b, c = 0, 0
+    elif c == 13:
+        c = 0
+    return a + b + c
 
 # D. double_char #
 # retorna os caracteres da string original duplicados
@@ -34,7 +48,11 @@ def lucky_sum(a, b, c):
 # double_char('AAbb') -> 'AAAAbbbb'
 # double_char('Hi-There') -> 'HHii--TThheerree'
 def double_char(s):
-  return
+    p = ''
+    for a in s:
+        a *= 2
+        p += a
+    return p
 
 # E. count_hi #
 # conta o número de vezes que aparece a string 'hi'
@@ -42,7 +60,11 @@ def double_char(s):
 # count_hi('ABChi hi') -> 2
 # count_hi('hihi') -> 2
 def count_hi(s):
-  return 
+    p = 0
+    for x in range(len(s)-1):
+        if s[x] + s[x+1] == 'hi':
+            p += 1
+    return p
 
 # F. cat_dog #
 # verifica se o aparece o mesmo número de vezes 'cat' e 'dog'
@@ -50,7 +72,13 @@ def count_hi(s):
 # cat_dog('catcat') -> False
 # cat_dog('1cat1cadodog') -> True
 def cat_dog(s):
-  return
+    p, q = 0, 0
+    for x in range(len(s)-2):
+        if s[x] + s[x+1] + s[x+2] == 'cat':
+            p += 1
+        if s[x] + s[x+1] + s[x+2] == 'dog':
+            q += 1
+    return p == q
 
 # G. count_code #
 # conta quantas vezes aparece 'code'
@@ -60,7 +88,11 @@ def cat_dog(s):
 # count_code('codexxcode') -> 2
 # count_code('cozexxcope') -> 2
 def count_code(s):
-  return 
+    p = 0
+    for x in range(len(s)-3):
+        if s[x] + s[x+1] == 'co' and s[x+3] == 'e':
+            p += 1
+    return p
 
 # H. end_other #
 # as duas strings devem ser convertidas para minúsculo via lower()
@@ -70,7 +102,15 @@ def count_code(s):
 # end_other('AbC', 'HiaBc') -> True
 # end_other('abc', 'abXabc') -> True
 def end_other(a, b):
-  return
+    if a.lower() in b.lower() or b.lower() in a.lower():
+        if len(a) > len(b):
+            y = len(b)
+        else:
+            y = len(a)
+        for x in range(y-1, 0, -1):
+            if a[x] == b[x]:
+                return True
+    return False
 
 # I. count_evens
 # conta os números pares da lista
