@@ -12,14 +12,20 @@
 # adiciona 'ing' no final
 # Caso a string já termine em 'ing', acrescentará 'ly'.
 def verbing(s):
-  return 
+    if len(s) >= 3 and not s.endswith('ing'):
+        return s + 'ing'
+    if s.endswith('ing'):
+        return s + 'ly'
+    return s
 
 # H. not_bad
 # Dada uma string, procura a primeira ocorrência de 'not' e 'bad'
 # Se 'bad' aparece depois de 'not' troca 'not' ... 'bad' por 'good'
 # Assim 'This dinner is not that bad!' retorna 'This dinner is good!'
 def not_bad(s):
-  return
+    if 'not' in s and 'bad' in s and s.index('bad') > s.index('not'):
+       s = s.replace((s[s.index('not'):s.index('bad')]+'bad'), 'good')
+    return s
 
 # I. inicio_final
 # Divida cada string em dois pedaços.
@@ -29,26 +35,44 @@ def not_bad(s):
 # Dadas 2 strings, a e b, retorna a string
 #  a-inicio + b-inicio + a-final + b-final
 def inicio_final(a, b):
-  return
+    import math
+    return a[:math.ceil(len(a)/2)]+b[:math.ceil(len(b)/2)]+a[math.ceil(len(a)/2):]+b[math.ceil(len(b)/2):]
 
 # J. zeros finais
 # Verifique quantos zeros há no final de um número inteiro positivo
 # Exemplo: 10010 tem 1 zero no fim e 908007000 possui três
 def zf(n):
-  return
+    p, n = 0, str(n)
+    for a in range(1,len(n)):
+        if n[-a] == '0':
+            p += 1
+        else:
+            break
+    return p
 
 # K. conta 2
 # Verifique quantas vezes o dígito 2 aparece entre 0 e n-1
 # Exemplo: para n = 20 o dígito 2 aparece duas vezes entre 0 e 19
 def conta2(n):
-  return
-
+    p = 0
+    for a in range(n):
+        if '2' in str(a):
+            p += str(a).count('2')
+    return p
+#  s = ''
+#  for i in range(n):
+#    s = s + str(i)
+#  return s.count('2')
+  
 # L. inicio em potencia de 2
 # Dado um número inteiro positivo n retorne a primeira potência de 2
 # que tenha o início igual a n
 # Exemplo: para n = 65 retornará 16 pois 2**16 = 65536
 def inip2(n):
-  return
+    p = 1
+    while not (str(2**p).startswith(str(n))):
+        p += 1
+    return p
 
 def test(obtido, esperado):
   if obtido == esperado:
